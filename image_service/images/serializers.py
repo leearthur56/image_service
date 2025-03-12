@@ -14,11 +14,12 @@ class ImageSerializer(serializers.ModelSerializer):
     height = serializers.SerializerMethodField()
     file_size = serializers.SerializerMethodField()
     is_color = serializers.SerializerMethodField()
+    image_url = serializers.SerializerMethodField()
 
     # Meta class to specify the model and fields to be serialized
     class Meta:
         model = Image
-        fields = ['id', 'folder', 'image', 'uploaded_at', 'width', 'height', 'file_size', 'is_color']
+        fields = ['id', 'folder', 'image', 'uploaded_at', 'width', 'height', 'file_size', 'is_color', 'image_url']
 
     # Method to get the width of the image
     def get_width(self, obj):
@@ -35,6 +36,11 @@ class ImageSerializer(serializers.ModelSerializer):
     # Method to check if the image is in color
     def get_is_color(self, obj):
         return obj.is_color_image()
+
+    # Method to get the image URL
+    def get_image_url(self, obj):
+        request = self.context.get('request')
+        return request.build_absolute_uri(obj.image.url) if request else obj.image.url
 
 class ImageListSerializer(serializers.ModelSerializer):
     # Define additional fields that are not directly present in the model

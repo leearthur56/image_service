@@ -47,5 +47,5 @@ class ImageDetailView(APIView):
     def get(self, request, foldername, id):
         folder = get_object_or_404(Folder, name=foldername)
         image = get_object_or_404(folder.images, id=id)
-        serializer = ImageSerializer(image)
+        serializer = ImageSerializer(image, context={'request': request})
         return Response(serializer.data)
