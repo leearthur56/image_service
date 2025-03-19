@@ -20,22 +20,11 @@ class Image(models.Model):
     image = models.ImageField(upload_to='uploads/')
     # The date and time when the image was uploaded
     uploaded_at = models.DateTimeField(auto_now_add=True)
+    image_width = models.IntegerField(null=True)
+    image_height = models.IntegerField(null=True)
+    file_size = models.IntegerField(null=True)
+    is_color = models.BooleanField(null=True)
 
     def __str__(self):
         # Return the name of the image file
         return self.image.name
-
-    def get_image_size(self):
-        # Get the dimensions of the image
-        with PILImage.open(self.image.path) as img:
-            return img.size
-
-    def get_file_size(self):
-        # Get the size of the image file in bytes
-        return self.image.size
-
-    def is_color_image(self):
-        # Check if the image is in color (RGB or RGBA mode)
-        from PIL import Image as PILImage
-        with PILImage.open(self.image.path) as img:
-            return img.mode in ('RGBA', 'RGB')

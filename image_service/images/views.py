@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.parsers import MultiPartParser, FormParser
 from .models import Folder, Image
 from .serializers import FolderSerializer, ImageSerializer, ImageListSerializer
 
@@ -24,7 +23,6 @@ class FolderView(APIView):
         return Response(serializer.data)
 
 class ImageView(APIView):
-    parser_classes = (MultiPartParser, FormParser)
 
     # API endpoint that allows images to be uploaded
     def post(self, request, foldername):

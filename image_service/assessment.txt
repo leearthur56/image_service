@@ -1,0 +1,19 @@
+Technical assessment
+
+Please design and implement an image uploading and display service using Python and
+Django. This service offers the following features, all accessible only through REST API:
+
+1. Users can create folder by specifying a folder name.
+2. After creating a folder, users can upload images into it.
+3. Users can retrieve a list of folders.
+4. Users can retrieve a list of images within a folder.
+5. For each image, the system should be able to display the image and provide
+information, including:
+- Image size (width, height)
+- Image file size
+- Whether it’s a color or grayscale image
+- Upload date and time
+
+Please note that using AI assistance to implement the exercise is acceptable, but
+ensure you thoroughly understand all the details, as the discussion of this exercise
+could be part of a future interview.
